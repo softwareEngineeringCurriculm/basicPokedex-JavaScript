@@ -26,18 +26,30 @@ const idScreen = document.getElementById('id-screen'); // pokemon id number scre
 //Create a function that uses fetch api to call the poke api and search for a specific pokemon and then add the poke api data to the 
 //appropriate HTML elements from PART I
 
+//Let's assign our fucntion to a variable 
 const getPokemonData = (pokemon) => {
+
+  //Call the fetch api and attach a callback function that will turn the response into json
   fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+    //a callback function to turn our api response into json
     .then((response) => response.json())
+    //a callback function to take the data from out newly converted json data and insert it into our appropriate DOM elements
     .then((data) => {
+      //create a format appropriate pokemon id in order to plug into the pokemon.com image url
       let id = ('00' + data.id).slice(-3);
+      //change the background image of the image screen element to the appropriate pokemon image
       imageScreen.style.backgroundImage = `url('https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png')`;
+      //change the text of the name screen element to the appropriate pokemon name
       nameScreen.innerHTML = data.name;
+      //change the text of the type screen element to the appropriate pokemon type
       typeScreen.innerHTML = data.types[0].type.name;
+      //change the text of the id screen element to the appropriate pokemon id
       idScreen.innerHTML = `#${data.id}`;
+      //change the text of the id screen element to the appropriate pokemon height and weight
       aboutScreen.innerHTML = `Height: ${data.height * 10}cm Weight: ${
         data.weight / 10
       }kg`;
+      //clear the input field in order for the user to input another pokemon name or id
       inputField.value = '';
     })
 };
