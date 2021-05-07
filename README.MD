@@ -1,4 +1,4 @@
-# Debugging JavaScript
+# Basic Pokedex
 This repository was created for the purpose of allowing students to create a basic Pokédex web application.
 
 ## Overview
